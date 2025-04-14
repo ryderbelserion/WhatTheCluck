@@ -43,7 +43,7 @@ tasks {
         archiveBaseName.set(rootProject.name)
         archiveClassifier.set("")
 
-        //minimize()
+        minimize()
 
         listOf(
             "com.ryderbelserion.fusion.paper",
