@@ -1,8 +1,8 @@
-rootProject.name = "GradleTemplate"
+rootProject.name = "WhatTheCluck"
 
 listOf(
-    "stock" to "stock",
-    "paper" to "paper"
+    "paper" to "paper",
+    "publish" to "publish"
 ).forEach(::includeProject)
 
 fun includeProject(pair: Pair<String, String>): Unit = includeProject(pair.first, pair.second)

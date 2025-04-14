@@ -1,0 +1,1 @@
+- Adds the ability to make Chickens spawn aggravated when anything is attacked.

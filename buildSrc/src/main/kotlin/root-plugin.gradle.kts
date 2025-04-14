@@ -1,13 +1,10 @@
-import org.gradle.accessors.dm.LibrariesForLibs
-
-// Hack which exposes `libs` to this convention plugin
-val libs = the<LibrariesForLibs>()
-
 plugins {
     `java-library`
 }
 
 repositories {
+    maven("https://repo.crazycrew.us/releases/")
+
     mavenCentral()
 }
 

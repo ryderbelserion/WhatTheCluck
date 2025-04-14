@@ -1,12 +1,18 @@
 plugins {
     alias(libs.plugins.runPaper)
+    alias(libs.plugins.shadow)
 
     id("paper-plugin")
 }
 
 project.group = "${rootProject.group}.paper"
 project.version = rootProject.version
-project.description = "A version of GradleTemplate for Paper based servers!"
+
+dependencies {
+    implementation(libs.triumph.cmds)
+
+    implementation(libs.fusion.paper)
+}
 
 tasks {
     processResources {
@@ -19,6 +25,32 @@ tasks {
 
         filesMatching("paper-plugin.yml") {
             expand(inputs.properties)
+        }
+    }
+
+    assemble {
+        dependsOn(shadowJar)
+
+        doLast {
+            copy {
+                from(shadowJar.get())
+                into(rootProject.projectDir.resolve("jars"))
+            }
+        }
+    }
+
+    shadowJar {
+        archiveBaseName.set(rootProject.name)
+        archiveClassifier.set("")
+
+        //minimize()
+
+        listOf(
+            "com.ryderbelserion.fusion.paper",
+            "dev.triumphteam",
+            "ch.jalu",
+        ).forEach {
+            relocate(it, "libs.$it")
         }
     }
 
